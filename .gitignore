@@ -7,3 +7,4 @@ data/*.pdf
 *.db
 .venv/
 .ipynb_checkpoints/
+.vscode/
