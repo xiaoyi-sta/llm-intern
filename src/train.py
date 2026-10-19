@@ -10,7 +10,13 @@ def train(X, y, seed: int = 42):
         X, y, test_size=0.2, random_state=seed, stratify=y
     )
     model = lgb.LGBMClassifier(
-        # TODO 把 notebook cell 2 / cell 6 里的模型参数抄到这里
+        n_estimators=100,
+        learning_rate=0.05,
+        max_depth=6,
+        class_weight="balanced",  # 风控场景违约样本极少，强制关注少数类
+        random_state=seed,
+        n_jobs=-1,
+        verbose=-1,
     )
     model.fit(X_train, y_train)
     prob = np.asarray(model.predict_proba(X_test))[:, 1]
